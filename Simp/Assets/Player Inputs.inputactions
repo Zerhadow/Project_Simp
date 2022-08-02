@@ -1,0 +1,85 @@
+{
+    "name": "Player Inputs",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "6d63eaa2-d0b7-4b7a-9bd5-ef23e4e2559a",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "ae8a14f0-6ec7-4495-995d-b0d0d44c0516",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "04ff0279-675c-4fa3-a13a-dc7934e9c903",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3e8287eb-455e-474a-82c6-680d1010b66e",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "7dc37b77-d455-41fc-9acb-110f6ef3924f",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "38a854cb-5829-451d-9ed0-eac9dcafae3e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7b103eaf-2b2c-4d83-bd4b-04bb8aa5d404",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
