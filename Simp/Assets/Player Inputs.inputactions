@@ -6,35 +6,110 @@
             "id": "6d63eaa2-d0b7-4b7a-9bd5-ef23e4e2559a",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
+                    "name": "Move",
+                    "type": "PassThrough",
                     "id": "ae8a14f0-6ec7-4495-995d-b0d0d44c0516",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Value",
+                    "id": "71b83ad3-de1c-4e36-8b9b-7e77a12a5256",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "04ff0279-675c-4fa3-a13a-dc7934e9c903",
-                    "path": "",
+                    "name": "2D Vector",
+                    "id": "239c3eae-48ac-40ba-b04d-c77da5d33960",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "0c02b4d1-cb6c-4a45-b46d-b15da2e9055e",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "c8a6b5a9-7a6c-4ee1-a208-e439643a1956",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "0423f100-a0b5-486b-8971-0cb498d4b98e",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "eacc6904-8218-4960-b1ba-9493c76b8d44",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "8055ec95-57c0-4bec-accd-a51648d1092b",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControlPad",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "3e8287eb-455e-474a-82c6-680d1010b66e",
-                    "path": "<Keyboard>/upArrow",
+                    "id": "01be84d3-fad7-4b6d-84cd-9fabaafd489f",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
-                    "action": "New action",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fdc3a684-712a-48dd-8cd6-91d67b2f17ef",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -80,6 +155,11 @@
                     "isOR": false
                 }
             ]
+        },
+        {
+            "name": "ControlPad",
+            "bindingGroup": "ControlPad",
+            "devices": []
         }
     ]
 }
