@@ -5,49 +5,70 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    PlayerInputs inputActions;
-    Vector2 move;
-    float dash;
-    public float moveSpd = 3f;
-    public float dashSpd = 20f;
-    public Camera playerCamera;
+    public Rigidbody2D rb;
+    public float moveSpd = 6f;
+    public PlayerInputs playerControls;
+
+    Vector2 moveDirection = Vector2.zero;
+    private InputAction move;
+    private InputAction melee;
+    private InputAction fire;
+    private InputAction dash;
+
+    private void Awake() {
+        playerControls = new PlayerInputs();
+    }
 
     private void OnEnable() {
-        inputActions.Player.Enable();
+        move = playerControls.Player.Move;
+        move.Enable();
+
+        melee = playerControls.Player.Melee;
+        melee.Enable();
+        melee.performed += Melee;
+
+        fire = playerControls.Player.Fire;
+        fire.Enable();
+        fire.performed += Fire;
+
+        dash = playerControls.Player.Dash;
+        dash.Enable();
+        dash.performed += Dash;
     }
 
     private void OnDisable() {
-        inputActions.Player.Disable();
-    }
-
-    private void Awake() {
-        inputActions = new PlayerInputs();
-
-        inputActions.Player.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
-        inputActions.Player.Move.canceled += ctx => move = Vector2.zero;
-
-        inputActions.Player.Move.performed += ctx => Dash();
-
-    }
-
-    private void Dash() {
-        if(dash + 1f < Time.time)
-            dash = Time.time;
+        move.Disable();
+        melee.Disable();
+        fire.Disable();
+        dash.Disable();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        dash = -1f;
+    
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(dash + 0.5f > Time.time) {
-            // transform.Translate((Vector3.forward * 8f * Time.deltaTime), Space.Self);
-        } else if (dash + 1f > Time.time) {
-            // transform.Translate((Vector3.forward * 8f * Time.deltaTime), Space.Self);
-        }
+        moveDirection = move.ReadValue<Vector2>();
+    }
+
+    private void FixedUpdate() {
+        rb.velocity = new Vector2(moveDirection.x * moveSpd, moveDirection.y * moveSpd);
+    }
+
+    private void Melee(InputAction.CallbackContext context) {
+        Debug.Log("Player used melee");
+    }
+
+    private void Fire(InputAction.CallbackContext context) {
+        Debug.Log("Player Fired projectile");
+    }
+
+    private void Dash(InputAction.CallbackContext context) {
+        Debug.Log("Player dashed");
     }
 }
+
