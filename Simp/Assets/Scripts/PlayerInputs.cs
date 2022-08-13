@@ -215,6 +215,98 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Enemy"",
+            ""id"": ""23acfee2-e9bb-4c40-92b1-efe4240401e0"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""abb1af96-59de-4ff9-8c74-c9454f6e6804"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Melee"",
+                    ""type"": ""Button"",
+                    ""id"": ""56abd643-c077-4375-8dd1-f3a5ade18022"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""IJKL"",
+                    ""id"": ""a6629332-22d5-41f3-85ef-9183b115f542"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""798b1e31-d7d1-4f4a-8bf7-d52be09a12dc"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""7ec327a6-7503-4b89-a4be-2f277e008b93"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""5c3cdd58-afc2-477e-a93f-ff49f851ec8e"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""dc59fa69-b9eb-46b4-97ef-5d8800ffaeca"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3a98a8c-baf9-43b3-b62c-9a54e46ca19c"",
+                    ""path"": ""<Keyboard>/period"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -245,6 +337,10 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
+        // Enemy
+        m_Enemy = asset.FindActionMap("Enemy", throwIfNotFound: true);
+        m_Enemy_Move = m_Enemy.FindAction("Move", throwIfNotFound: true);
+        m_Enemy_Melee = m_Enemy.FindAction("Melee", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -390,6 +486,47 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Enemy
+    private readonly InputActionMap m_Enemy;
+    private IEnemyActions m_EnemyActionsCallbackInterface;
+    private readonly InputAction m_Enemy_Move;
+    private readonly InputAction m_Enemy_Melee;
+    public struct EnemyActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public EnemyActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Enemy_Move;
+        public InputAction @Melee => m_Wrapper.m_Enemy_Melee;
+        public InputActionMap Get() { return m_Wrapper.m_Enemy; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(EnemyActions set) { return set.Get(); }
+        public void SetCallbacks(IEnemyActions instance)
+        {
+            if (m_Wrapper.m_EnemyActionsCallbackInterface != null)
+            {
+                @Move.started -= m_Wrapper.m_EnemyActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_EnemyActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_EnemyActionsCallbackInterface.OnMove;
+                @Melee.started -= m_Wrapper.m_EnemyActionsCallbackInterface.OnMelee;
+                @Melee.performed -= m_Wrapper.m_EnemyActionsCallbackInterface.OnMelee;
+                @Melee.canceled -= m_Wrapper.m_EnemyActionsCallbackInterface.OnMelee;
+            }
+            m_Wrapper.m_EnemyActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Melee.started += instance.OnMelee;
+                @Melee.performed += instance.OnMelee;
+                @Melee.canceled += instance.OnMelee;
+            }
+        }
+    }
+    public EnemyActions @Enemy => new EnemyActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -418,5 +555,10 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     public interface IUIActions
     {
         void OnNewaction(InputAction.CallbackContext context);
+    }
+    public interface IEnemyActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnMelee(InputAction.CallbackContext context);
     }
 }
