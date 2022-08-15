@@ -6,49 +6,52 @@ using UnityEngine.InputSystem;
 public class EnemyController : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float moveSpeed = 6f;
+    public float moveSpeed = 20f;
     public PlayerInputs enemyControls;
 
     Vector2 moveDirection = Vector2.zero;
-    private InputAction move;
-    private InputAction melee;
+    public Rigidbody2D toFollow;
 
-    private void Awake() {
-        enemyControls = new PlayerInputs();
-    }
-
-    private void OnEnable() {
-        move = enemyControls.Enemy.Move;
-        move.Enable();
-
-        melee = enemyControls.Enemy.Melee;
-        melee.Enable();
-        melee.performed += Melee;
-    }
-
-    private void OnDisable() {
-        move.Disable();
-        melee.Disable();
-    }
-
-    // Start is called before the first frame update
+    public Transform attackPoint;
+    private float attackRange = 0.5f;
+    public LayerMask playerLayer;
+    
     void Start()
     {
-    
+        InvokeRepeating("MoveTowardsPlayer", 1.0f, 2.0f);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        moveDirection = move.ReadValue<Vector2>();
+        moveDirection = toFollow.position - new Vector2(transform.position.x, transform.position.y);
+        Collider2D hitPlayer = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerLayer);
+        if(hitPlayer){
+            Melee();
+        }
+    }
+
+    private void MoveTowardsPlayer(){
+        rb.velocity = moveDirection.normalized * moveSpeed;
     }
 
     private void FixedUpdate() {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        if(moveDirection.x > 0){
+            gameObject.transform.localScale = new Vector2(1,1);
+        }
+        if(moveDirection.x < 0){
+            gameObject.transform.localScale = new Vector2(-1,1);
+        }
     }
 
-    private void Melee(InputAction.CallbackContext context) {
-        Debug.Log("Enemy used melee");
+    private void Melee() {
+        Debug.Log("Player in range");
+    }
+
+    void OnDrawGizmosSelected(){
+        if(attackPoint == null)
+            return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
 
