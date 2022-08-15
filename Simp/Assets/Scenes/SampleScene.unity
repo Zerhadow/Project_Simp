@@ -590,12 +590,16 @@ PrefabInstance:
       objectReference: {fileID: 1060361238}
     - target: {fileID: 2515966487985854408, guid: 1dea166adf0153541a1229874328698f, type: 3}
       propertyPath: moveSpeed
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2515966487985854408, guid: 1dea166adf0153541a1229874328698f, type: 3}
       propertyPath: attackPoint
       value: 
       objectReference: {fileID: 2127518285}
+    - target: {fileID: 2515966487985854408, guid: 1dea166adf0153541a1229874328698f, type: 3}
+      propertyPath: moveFrequency
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2515966487985854408, guid: 1dea166adf0153541a1229874328698f, type: 3}
       propertyPath: playerLayer.m_Bits
       value: 8

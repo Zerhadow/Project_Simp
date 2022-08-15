@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class EnemyController : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float moveSpeed = 20f;
+    public float moveSpeed = 4f;
+    public float moveFrequency = 1.5f;
     public PlayerInputs enemyControls;
 
     Vector2 moveDirection = Vector2.zero;
@@ -18,7 +19,7 @@ public class EnemyController : MonoBehaviour
     
     void Start()
     {
-        InvokeRepeating("MoveTowardsPlayer", 1.0f, 2.0f);
+        InvokeRepeating("MoveTowardsPlayer", 1.0f, moveFrequency);
     }
 
     void Update()
