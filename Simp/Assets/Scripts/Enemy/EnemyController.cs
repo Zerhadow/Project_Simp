@@ -74,6 +74,7 @@ public class EnemyController : MonoBehaviour
         gameObject.GetComponent<EnemyController>().enabled = false;
         gameObject.GetComponent<EnemyController>().enabled = true;
         Start();
+        FixedUpdate();
     }
 
     void OnDrawGizmosSelected(){
