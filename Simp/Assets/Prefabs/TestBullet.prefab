@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8704657040078098721}
   m_Layer: 7
   m_Name: TestBullet
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,3 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbed3fd59fd7f54fae8e9d94e4dc128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooter: {fileID: 4756034889109372816, guid: e174b0aff8f58d144a1c8f744f235565, type: 3}
