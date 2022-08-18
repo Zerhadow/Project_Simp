@@ -99,13 +99,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2515966487985854409}
-  moveSpeed: 6
-  moveFrequency: 1.5
+  moveLength: 2
+  attackLength: 20
+  attackDrag: 5
+  moveFrequency: 1
+  attackPrepTime: 1
+  cooldownTime: 2
   toFollow: {fileID: 0}
-  attackPoint: {fileID: 0}
+  attackRange: 4
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!50 &2515966487985854409
 Rigidbody2D:
   serializedVersion: 4
@@ -119,7 +123,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

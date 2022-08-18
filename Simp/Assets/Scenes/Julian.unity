@@ -421,18 +421,6 @@ PrefabInstance:
       propertyPath: attackPoint
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 2515966487985854408, guid: 1dea166adf0153541a1229874328698f, type: 3}
-      propertyPath: moveFrequency
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2515966487985854408, guid: 1dea166adf0153541a1229874328698f, type: 3}
-      propertyPath: playerLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2515966487985854409, guid: 1dea166adf0153541a1229874328698f, type: 3}
-      propertyPath: m_LinearDrag
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2515966487985854411, guid: 1dea166adf0153541a1229874328698f, type: 3}
       propertyPath: m_RootOrder
       value: 1
