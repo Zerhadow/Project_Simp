@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : BaseUnit
+public class PlayerController : MonoBehaviour
 {
-    #region Variables
     public Rigidbody2D rb;
     public float moveSpd = 6f;
     public PlayerInputs playerControls;
@@ -27,11 +26,9 @@ public class PlayerController : BaseUnit
     float dashingTime = 0.2f;
 
     public TrailRenderer tr;
-    #endregion
 
     private void Awake() {
         playerControls = new PlayerInputs();
-        rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable() {
@@ -132,20 +129,6 @@ public class PlayerController : BaseUnit
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
-    }
-
-    public override void Die() {
-        // base.Die();
-        //deathSound.Play();
-        // if(deathParticles != null)
-            // Instantiate(deathParticles,transform.position,Quaternion.identity);
-        // AudioManager.PlaySound("Player Death");
-        // Destroy(this.gameObject);
-        Debug.Log(transform.name + " dead.");
-        // dmg = 2; //reset amps
-        maxHP = 100;        
-        // pauseMenuUI.Death();
-        Destroy(this.gameObject);
     }
 }
 
