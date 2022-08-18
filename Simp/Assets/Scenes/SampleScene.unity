@@ -478,7 +478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060361233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.64, y: 0, z: 0}
   m_LocalScale: {x: 0.7672984, y: 1.4911194, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -593,9 +593,13 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2515966487985854408, guid: 1dea166adf0153541a1229874328698f, type: 3}
+      propertyPath: moveLength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515966487985854408, guid: 1dea166adf0153541a1229874328698f, type: 3}
       propertyPath: attackPoint
       value: 
-      objectReference: {fileID: 2127518285}
+      objectReference: {fileID: 0}
     - target: {fileID: 2515966487985854408, guid: 1dea166adf0153541a1229874328698f, type: 3}
       propertyPath: moveFrequency
       value: 1
@@ -1091,8 +1095,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5999994, y: 1.8917967}
   m_EdgeRadius: 0
---- !u!4 &2127518285 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9204859678631315772, guid: 1dea166adf0153541a1229874328698f, type: 3}
-  m_PrefabInstance: {fileID: 1603268694}
-  m_PrefabAsset: {fileID: 0}
