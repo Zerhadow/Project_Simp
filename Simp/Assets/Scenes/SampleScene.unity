@@ -418,6 +418,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2515966487985854408, guid: 1dea166adf0153541a1229874328698f, type: 3}
+      propertyPath: moveLength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515966487985854408, guid: 1dea166adf0153541a1229874328698f, type: 3}
       propertyPath: attackPoint
       value: 
       objectReference: {fileID: 0}
