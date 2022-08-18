@@ -410,6 +410,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2515966487985854408, guid: 1dea166adf0153541a1229874328698f, type: 3}
+      propertyPath: moveDrag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2515966487985854408, guid: 1dea166adf0153541a1229874328698f, type: 3}
       propertyPath: toFollow
       value: 
       objectReference: {fileID: 1060361238}
@@ -853,7 +857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8038784912044247553, guid: e174b0aff8f58d144a1c8f744f235565, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1226
+      value: 2.05
       objectReference: {fileID: 0}
     - target: {fileID: 8038784912044247553, guid: e174b0aff8f58d144a1c8f744f235565, type: 3}
       propertyPath: m_LocalPosition.y
