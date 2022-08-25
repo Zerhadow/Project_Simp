@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : BaseUnit
 {
     public Rigidbody2D rb;
     public float moveLength = 4f; //velocity scalar of movement dash
@@ -25,6 +25,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         InvokeRepeating("MoveTowardsPlayer", 1.0f, moveFrequency);
+        // currHP = maxHP;
     }
 
     void Update()

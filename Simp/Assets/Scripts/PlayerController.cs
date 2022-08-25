@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : BaseUnit
 {
+    #region Variables
     public Rigidbody2D rb;
     public float moveSpd = 6f;
 
@@ -30,6 +31,13 @@ public class PlayerController : MonoBehaviour
     float dashingTime = 0.2f;
 
     public TrailRenderer tr;
+
+    public Animator animator;
+    public Transform atkPt;
+    public float atkRange= 0.5f;
+    public LayerMask enemyLayers;
+
+    #endregion
 
     private void Awake() {
         playerControls = new PlayerInputs();
@@ -86,6 +94,23 @@ public class PlayerController : MonoBehaviour
 
     private void Melee(InputAction.CallbackContext context) {
         Debug.Log("Player used melee");
+
+        // animator.SetTrigger("melee");
+
+        // Detect enemies in range
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(atkPt.position, atkRange, enemyLayers);
+
+        // Damage them
+        foreach(Collider2D enemy in hitEnemies) {
+            Debug.Log("We hit " + enemy.name);
+            // enemy.GetComponent<EnemyController>().TakeDamage(dmg);
+        }
+    }
+
+    void OnDrawGizmosSelected() {
+        if(atkPt == null) {return;}
+
+        Gizmos.DrawWireSphere(atkPt.position, atkRange);
     }
 
     private void Shoot(InputAction.CallbackContext context) {
@@ -134,6 +159,20 @@ public class PlayerController : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    public override void Die() { 
+        // base.Die(); 
+        //deathSound.Play(); 
+        // if(deathParticles != null) 
+            // Instantiate(deathParticles,transform.position,Quaternion.identity); 
+        // AudioManager.PlaySound("Player Death"); 
+        // Destroy(this.gameObject); 
+        Debug.Log(transform.name + " dead."); 
+        // dmg = 2; //reset amps 
+        maxHP = 100;         
+        // pauseMenuUI.Death(); 
+        Destroy(this.gameObject); 
     }
 }
 
