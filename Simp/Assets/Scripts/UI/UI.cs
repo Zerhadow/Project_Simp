@@ -12,11 +12,32 @@ public class UI : MonoBehaviour
     void Start()
     {
         //test to make sure its configed correctly
-        health.value = 50;
-        super.value = 50;
+        SetMaxHealth(100);
+        SetMaxSuper(100);
         
     }
 
+    public void SetMaxHealth(int HP)
+    {
+        health.maxValue = HP;
+        health.value = HP;
+    }
+
+    public void SetHealth(int hp)
+    {
+        health.value = hp;
+    }
+
+    public void SetMaxSuper(int SP)
+    {
+        super.maxValue = SP;
+        super.value = SP;
+    }
+
+    public void SetSuper(int sp)
+    {
+        super.value = sp;
+    }
     // Update is called once per frame
     void Update()
     {
