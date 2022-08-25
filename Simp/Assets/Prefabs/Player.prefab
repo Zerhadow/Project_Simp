@@ -133,10 +133,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8038784912044247563}
   moveSpd: 4
+  regularDrag: 2
   projectilePrefab: {fileID: 673159139381302182, guid: 4c1874077e8dbdb499cc8494d218a140, type: 3}
   shootCooldown: 4
   dashCooldown: 2
-  dashPwr: 6000
+  dashPwr: 25
+  dashDrag: 8
   tr: {fileID: 8038784912044247562}
 --- !u!50 &8038784912044247563
 Rigidbody2D:
@@ -151,7 +153,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

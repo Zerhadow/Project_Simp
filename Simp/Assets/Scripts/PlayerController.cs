@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float moveSpd = 6f;
+
+    public float regularDrag = 2f;
     public PlayerInputs playerControls;
 
     Vector2 moveDirection = Vector2.zero;
@@ -23,6 +25,8 @@ public class PlayerController : MonoBehaviour
     bool canCast = true, canDash = true, isDashing = false;
 
     public float dashPwr = 24f;
+
+    public float dashDrag = 5f;
     float dashingTime = 0.2f;
 
     public TrailRenderer tr;
@@ -76,9 +80,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        rb.velocity = new Vector2(moveDirection.x * moveSpd, moveDirection.y * moveSpd);
-
         if(isDashing) {return;}
+        rb.velocity = new Vector2(moveDirection.x * moveSpd, moveDirection.y * moveSpd);
     }
 
     private void Melee(InputAction.CallbackContext context) {
@@ -122,9 +125,11 @@ public class PlayerController : MonoBehaviour
     IEnumerator dashTimer(float timer){
         canDash = false;
         isDashing = true;
-        rb.AddForce(lookDirection * dashPwr);
+        rb.velocity = lookDirection * dashPwr;
+        gameObject.GetComponent<Rigidbody2D>().drag = dashDrag;
         tr.emitting = true;
         yield return new WaitForSeconds(dashingTime);
+        gameObject.GetComponent<Rigidbody2D>().drag = regularDrag;
         tr.emitting = false;
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
